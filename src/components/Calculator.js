@@ -41,7 +41,9 @@ const Calculator = () => {
           <Button variant='outlined' onClick={() => clearNumbers()}>
             C
           </Button>
-          <Button variant='outlined'>&#x2190;</Button>
+          <Button variant='outlined' onClick={() => (number.length >= 2 ? setNumber(number.substring(0, number.length - 1)) : setNumber(0))}>
+            &#x2190;
+          </Button>
         </Box>
         <Box>
           <Button variant='outlined' onClick={() => addNumber(7)}>
