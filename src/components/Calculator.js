@@ -4,14 +4,29 @@ import './calculator.css'
 
 const Calculator = () => {
   const [number, setNumber] = useState(0)
+  const [numberSec, setNumberSec] = useState(0)
 
   const addNumber = (num) => {
     setNumber(number + num + '')
   }
 
+  const performCalculation = (symbol) => {
+    if (numberSec === 0) {
+      setNumberSec(number)
+      setNumber(0)
+    } else {
+      switch (symbol) {
+        case '+':
+          setNumber(parseInt(numberSec) + parseInt(number))
+          setNumberSec(0)
+      }
+    }
+  }
+
   return (
     <div className='wrapper'>
       <div className='calculator-container'>
+        <span>{numberSec === 0 ? '' : numberSec}</span>
         <div className='result-box'>
           <span>{number}</span>
         </div>
@@ -57,7 +72,9 @@ const Calculator = () => {
           <Button variant='outlined' onClick={() => addNumber(3)}>
             3
           </Button>
-          <Button variant='outlined'>+</Button>
+          <Button variant='outlined' onClick={() => performCalculation('+')}>
+            +
+          </Button>
         </Box>
         <Box>
           <Button variant='outlined'>lol</Button>
