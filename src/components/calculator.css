@@ -1,0 +1,9 @@
+.calculator-container Button {
+  font-size: 30px;
+  padding: 20px;
+}
+
+.calculator-container {
+  text-align: center;
+  margin-top: 30vh;
+}
