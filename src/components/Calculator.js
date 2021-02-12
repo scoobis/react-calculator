@@ -23,6 +23,11 @@ const Calculator = () => {
     }
   }
 
+  const clearNumbers = () => {
+    setNumber(0)
+    setNumberSec(0)
+  }
+
   return (
     <div className='wrapper'>
       <div className='calculator-container'>
@@ -33,7 +38,9 @@ const Calculator = () => {
         <Box>
           <Button variant='outlined'>%</Button>
           <Button variant='outlined'>CE</Button>
-          <Button variant='outlined'>C</Button>
+          <Button variant='outlined' onClick={() => clearNumbers()}>
+            C
+          </Button>
           <Button variant='outlined'>&#x2190;</Button>
         </Box>
         <Box>
