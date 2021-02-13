@@ -5,23 +5,33 @@ import './calculator.css'
 const Calculator = () => {
   const [number, setNumber] = useState(0)
   const [numberSec, setNumberSec] = useState(0)
+  const [currentSybol, setCurtrentSymbol] = useState('')
 
   const addNumber = (num) => {
-    setNumber(number + num + '')
+    number === 0 ? setNumber(num) : setNumber(number + num.toString())
   }
 
   const performCalculation = (symbol) => {
+    symbol === '=' ? setCurtrentSymbol(currentSybol) : setCurtrentSymbol(symbol)
     if (numberSec === 0) {
       setNumberSec(number)
       setNumber(0)
     } else {
-      switch (symbol) {
+      switch (currentSybol) {
         case '+':
           setNumber(parseInt(numberSec) + parseInt(number))
           setNumberSec(0)
+          break
+        case '-':
+          setNumber(parseInt(numberSec) - parseInt(number))
+          setNumberSec(0)
+          break
       }
+      setCurtrentSymbol('')
     }
   }
+
+  const equal = () => {}
 
   const clearNumbers = () => {
     setNumber(0)
@@ -31,8 +41,12 @@ const Calculator = () => {
   return (
     <div className='wrapper'>
       <div className='calculator-container'>
-        <span>{numberSec === 0 ? '' : numberSec}</span>
         <div className='result-box'>
+          <br />
+          <span>
+            {currentSybol} {numberSec === 0 ? '' : numberSec}
+          </span>
+          <br />
           <span>{number}</span>
         </div>
         <Box>
@@ -68,7 +82,9 @@ const Calculator = () => {
           <Button variant='outlined' onClick={() => addNumber(6)}>
             6
           </Button>
-          <Button variant='outlined'>-</Button>
+          <Button variant='outlined' onClick={() => performCalculation('-')}>
+            -
+          </Button>
         </Box>
 
         <Box>
@@ -89,7 +105,9 @@ const Calculator = () => {
           <Button variant='outlined'>lol</Button>
           <Button variant='outlined'>0</Button>
           <Button variant='outlined'>,</Button>
-          <Button variant='outlined'>=</Button>
+          <Button variant='outlined' onClick={() => performCalculation('=')}>
+            =
+          </Button>
         </Box>
       </div>
     </div>
