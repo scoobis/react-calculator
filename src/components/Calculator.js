@@ -19,19 +19,25 @@ const Calculator = () => {
     } else {
       switch (currentSybol) {
         case '+':
-          setNumber(parseInt(numberSec) + parseInt(number))
+          setNumber((parseFloat(numberSec) + parseFloat(number)).toFixed(2))
           setNumberSec(0)
           break
         case '-':
-          setNumber(parseInt(numberSec) - parseInt(number))
+          setNumber((parseFloat(numberSec) - parseFloat(number)).toFixed(2))
+          setNumberSec(0)
+          break
+        case 'x':
+          setNumber((parseFloat(numberSec) * parseFloat(number)).toFixed(2))
+          setNumberSec(0)
+          break
+        case '/':
+          setNumber((parseFloat(numberSec) / parseFloat(number)).toFixed(2))
           setNumberSec(0)
           break
       }
       setCurtrentSymbol('')
     }
   }
-
-  const equal = () => {}
 
   const clearNumbers = () => {
     setNumber(0)
@@ -69,7 +75,9 @@ const Calculator = () => {
           <Button variant='outlined' onClick={() => addNumber(9)}>
             9
           </Button>
-          <Button variant='outlined'>X</Button>
+          <Button variant='outlined' onClick={() => performCalculation('x')}>
+            X
+          </Button>
         </Box>
 
         <Box>
@@ -103,8 +111,12 @@ const Calculator = () => {
         </Box>
         <Box>
           <Button variant='outlined'>lol</Button>
-          <Button variant='outlined'>0</Button>
-          <Button variant='outlined'>,</Button>
+          <Button variant='outlined' onClick={() => addNumber(0)}>
+            0
+          </Button>
+          <Button variant='outlined' onClick={() => addNumber('.')}>
+            ,
+          </Button>
           <Button variant='outlined' onClick={() => performCalculation('=')}>
             =
           </Button>
